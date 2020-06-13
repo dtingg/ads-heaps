@@ -106,19 +106,22 @@ class MaxHeap {
    * @returns {*} The data stored in the highest-priority record, or undefined if the queue is empty
    */
   removeMax() {
+
+    if (this._count === 0) {
+      return undefined;
+    }
+    
     const max = this._storage[1];
 
+    // Swap max with end and make it undefined
     this._swap(1, this._count);
-
     this._storage[this._count] = { priority: undefined, element: undefined };
-
     this._count -= 1;
 
+    // Sink down
+    this._sink(1);
+
     return max.element;
-
-
-
-
   }
 
   /** 
