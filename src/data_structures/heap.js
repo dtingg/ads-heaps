@@ -62,7 +62,13 @@ class MaxHeap {
   }
 
   _float(i) {
-    // TODO
+    let parent = Math.floor(i / 2);
+
+    while (parent >= 1 && (this._storage[parent].priority < this._storage[i].priority)) {
+      this._swap(i, parent);
+      i = parent;
+      parent = Math.floor(i / 2);
+    } 
   }
 
   _sink(i) {
@@ -87,13 +93,10 @@ class MaxHeap {
       throw new Error('Heap is full!');
     }
 
-    this._storage[this._count] = { priority: priority, element: element }
-
+    this._storage[this._count].priority = priority;
+    this._storage[this._count].element = element;
+    
     this._float(this._count)
-
-
-
-
   }
 
   /**
