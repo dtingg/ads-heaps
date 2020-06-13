@@ -72,7 +72,9 @@ class MaxHeap {
   }
 
   _sink(i) {
-    // TODO
+    let finished = false;
+
+    
   }
 
   _buildheap() {
@@ -93,9 +95,8 @@ class MaxHeap {
       throw new Error('Heap is full!');
     }
 
-    this._storage[this._count].priority = priority;
-    this._storage[this._count].element = element;
-    
+    this._storage[this._count] = { priority: priority, element: element };
+
     this._float(this._count)
   }
 
@@ -105,7 +106,19 @@ class MaxHeap {
    * @returns {*} The data stored in the highest-priority record, or undefined if the queue is empty
    */
   removeMax() {
-    // TODO
+    const max = this._storage[1];
+
+    this._swap(1, this._count);
+
+    this._storage[this._count] = { priority: undefined, element: undefined };
+
+    this._count -= 1;
+
+    return max.element;
+
+
+
+
   }
 
   /** 
