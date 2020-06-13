@@ -86,6 +86,14 @@ class MaxHeap {
     } else {
       throw new Error('Heap is full!');
     }
+
+    this._storage[this._count] = { priority: priority, element: element }
+
+    this._float(this._count)
+
+
+
+
   }
 
   /**
