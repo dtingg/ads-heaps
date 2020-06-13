@@ -81,7 +81,11 @@ class MaxHeap {
    * @throws If the heap is full
    */
   insert(priority, element) {
-    // TODO
+    if (this._count < this.size) {
+      this._count += 1;
+    } else {
+      throw new Error('Heap is full!');
+    }
   }
 
   /**
