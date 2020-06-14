@@ -62,19 +62,38 @@ class MaxHeap {
   }
 
   _float(i) {
-    let parent = Math.floor(i / 2);
+    let parent = this._parent(i);
 
     while (parent >= 1 && (this._storage[parent].priority < this._storage[i].priority)) {
       this._swap(i, parent);
       i = parent;
-      parent = Math.floor(i / 2);
+      parent = this._parent(i);
     } 
   }
 
   _sink(i) {
     let finished = false;
 
-    
+    while (finished == false) {
+      let left = this._left(i);
+      let right = this._right(i);
+
+      let max = i;
+      
+      if (left <= this._count && (this._storage[left].priority > this._storage[max].priority)) {
+        max = left;
+      }
+      if (right <= this._count && (this._storage[right].priority > this._storage[max].priority)) {
+        max = right;
+      }
+      
+      if (max == i) {
+        finished = true;
+      } else {
+        this._swap (i, max);
+        i = max;
+      } 
+    }
   }
 
   _buildheap() {
@@ -106,11 +125,10 @@ class MaxHeap {
    * @returns {*} The data stored in the highest-priority record, or undefined if the queue is empty
    */
   removeMax() {
-
-    if (this._count === 0) {
+    if (this._count == 0) {
       return undefined;
     }
-    
+
     const max = this._storage[1];
 
     // Swap max with end and make it undefined
