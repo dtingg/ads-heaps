@@ -97,7 +97,11 @@ class MaxHeap {
   }
 
   _buildheap() {
-    // TODO
+    let midpoint = Math.floor(this._count / 2);
+
+    for (let i = midpoint; i > 0; i -= 1) {
+      this._sink(i);
+    }
   }
 
   /**
@@ -160,7 +164,13 @@ class MaxHeap {
    * @returns Sorted storage array. Note that the array is 1-indexed (so the first element is null)
    */
   sort() {
-    // TODO
+    for (let i = this._count; i > 0; i -= 1) {
+      this._swap(1, this._count);
+      this._count -= 1;
+      this._sink(1);
+    }
+
+    return this._storage;
   }
 }
 
